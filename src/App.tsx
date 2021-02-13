@@ -1,25 +1,21 @@
+/*
+Descrição do projeto:
+https://gist.github.com/jenicarvalho/274b60a7c7b4266bbaffc77971fdcb4b
+*/
+
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { store } from './store/ducks/carrinho';
+import { Provider } from 'react-redux'
+import Routes from './routes';
+import Footer from './components/Footer';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Routes />
+    </Provider>
   );
 }
 

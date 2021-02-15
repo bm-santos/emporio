@@ -1,0 +1,90 @@
+div {
+    overflow: hidden;
+    .carrinho {
+        margin: auto;
+        width: 50%;
+        padding: 15px 15px;
+        .container {
+            padding: 5px 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            flex-wrap: wrap;
+            border-radius: 12px;
+            opacity: 80%;
+            background-color: white;
+            .carrinho-header-meu-carrinho {
+                font-weight: bolder;
+                font-size: 24px;
+            }
+            .carrinho-header-finalizar {
+                justify-self: right;
+                align-self: center;
+                cursor: pointer;
+                :hover {
+                    color: green;
+                }
+            }
+            .carrinho-left-side {
+                font-weight: bold;
+                font-size: 24px;
+                color: rgb(184, 74, 0);
+                img {
+                    height: 200px;
+                }
+            }
+            .carrinho-right-side {
+                padding: 0px 20px;
+                .trash {
+                    color: darkred;
+                    padding: 20px 20px;
+                    cursor: pointer;
+                    :hover {
+                        color: red;
+                    }
+                }
+                .carrinho-itens {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-rows: 1fr 2fr;
+                    justify-items: bottom !important;
+                    align-items: center !important;
+                    padding: 0px 20px;
+
+                    .carrinho-btn-decrementa {
+                        background-color: orange;
+                    }
+                    .carrinho-btn-decrementa:hover {
+                        background-color: rgb(255, 111, 0);
+                        cursor: pointer;
+                    }
+                    .carrinho-qtd {
+                        background-color: rgb(255, 255, 255);
+                        justify-self: stretch;
+                    }
+                    .carrinho-btn-incrementa {
+                        background-color: orange;
+                    }
+                    .carrinho-btn-incrementa:hover {
+                        background-color: rgb(255, 111, 0);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .pedido-finalizado {
+            background-color: #fff;
+            opacity: 50%;
+            padding: 20px;
+            border-radius: 12px;
+            p {
+                width: 100%;
+                margin: auto;
+                align-self: center;
+                justify-self: right;
+                font-size: 30px;
+                font-weight: bold;
+                color: rgb(228, 129, 0);
+            }
+        }
+    }
+}

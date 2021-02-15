@@ -7,7 +7,8 @@ import { ItensTypes, ItensState, ItensPorProduto } from "./types"
 const initialState: ItensState = {
     arrayItens: [],
     itensNoCarrinho: 0,
-    somaCompra: 0
+    somaCompra: 0,
+    compraFinalizada: false
 }
 
 function reducer(state = initialState, action: any) {
@@ -22,6 +23,7 @@ function reducer(state = initialState, action: any) {
             somaTotal = somaTotal + action.payload.price
             itens?.push(action.payload)
             return {
+                ...state,
                 arrayItens: itens,
                 itensNoCarrinho: itensCarrinho,
                 somaCompra: somaTotal
@@ -47,6 +49,17 @@ function reducer(state = initialState, action: any) {
                 itensNoCarrinho: itensCarrinho,
                 somaCompra: somaTotal,
                 arrayItens: itens
+            }
+        case ItensTypes.FINALIZA_PEDIDO:
+            return {
+                itensNoCarrinho: 0,
+                somaCompra: 0,
+                arrayItens: [],
+                compraFinalizada: true
+            }
+        case ItensTypes.LIMPA_COOKIES:
+            return {
+                state: undefined
             }
         default:
             return state

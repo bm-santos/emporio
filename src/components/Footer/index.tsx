@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { removeDoCarrinho } from "../../store/ducks/carrinho/action";
+import { limpaCookies } from "../../store/ducks/carrinho/action";
 
 function Footer() {
     const [cookiesLimpos, setCookiesLimpos] = useState<Boolean>(false)
+    const dispatch = useDispatch()
 
     const limparCookies = () => {
-        setCookiesLimpos(true)
+        dispatch(limpaCookies())
         localStorage.clear()
-        
+        return setCookiesLimpos(true)
+
     }
     return (
         <>

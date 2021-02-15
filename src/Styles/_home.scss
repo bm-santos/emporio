@@ -1,0 +1,46 @@
+div {
+    .home {
+        margin: auto;
+        overflow:hidden;
+        .container {
+            padding: 5px 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            flex-wrap: wrap;
+            border-radius: 5px;
+            opacity: 80%;
+            .item {
+                background-color: rgb(255, 255, 255);
+                border-radius: 12px;
+                color: rgb(22, 22, 22);
+                justify-self: stretch;
+                margin: 5px;
+                padding: 5px;
+                img {
+                    height: 100px;
+                }
+                p{
+                    font-size:15px;
+                    margin: 10px;
+                }
+                span{
+                    font-size: 10px;
+                }
+                button {
+                    padding: 10px;
+                    width: 180px;
+                    border: none;
+                    border-radius: 12px;
+                    background: linear-gradient(90deg, #e6f42d 0%, #e8d121 100%);
+                    margin: 5px;
+                    cursor: pointer;
+                }
+                button:hover {
+                    @extend button;
+                    background: linear-gradient(90deg, #eb6931 0%, #e9452c 100%);
+                }
+                
+            }
+        }
+    }
+}

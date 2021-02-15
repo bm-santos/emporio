@@ -1,0 +1,22 @@
+html {
+    background-image: url("../images/bg-cadastro.jpg");
+    background-size: cover;
+    height: 100%; /* You must set a specified height */
+    width: 100%;
+    background-position: stretch; /* Center the image */
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+body {
+    margin: 10;
+    font-family: "apple-system", "BlinkMacSystemFont", "avenir next", "avenir", "helvetica neue", "helvetica", "ubuntu",
+        "roboto", "noto", "segoe ui", "arial", sans-serif;
+    text-align: center;
+    color: rgb(77, 77, 77);
+}
+
+@import "./cadastro";
+@import "./home";
+@import "./carrinho";
+@import "./header";

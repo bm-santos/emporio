@@ -6,6 +6,7 @@ import { ItensState } from "../../store/ducks/carrinho/types";
 import Carrinho from "../Carrinho";
 import "../../Styles/style.css"
 import { ShoppingCart } from "@material-ui/icons";
+import { Badge, IconButton, MenuItem } from "@material-ui/core";
 
 function Header() {
     const [categorias, setCategorias] = useState<any>([])
@@ -30,6 +31,7 @@ function Header() {
                     </div>
                     <div className="item-categorias">
                         <ul>
+                            <a href="/"><li className="home-disabled">Home</li></a>
                             {categorias.map((item: any) => (
                                 <a href={`https://www.emporiodacerveja.com.br/${item}`} target="_blank" rel="noreferrer">
                                     <li className="Categorias" key={item.id}>{item}</li>
@@ -42,13 +44,23 @@ function Header() {
                     <div className="item-carrinho" >
                         {itensNoCarrinho !== 0 &&
                             <>
-                                <p><strong><ShoppingCart /><span>{itensNoCarrinho}</span></strong> / {somaCompra.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                <p><strong>
+                                    <IconButton >
+                                        <Badge badgeContent={<span className="itens-carrinho">{itensNoCarrinho}</span>} >
+                                            <ShoppingCart />
+                                        </Badge>
+                                    </IconButton></strong> / {somaCompra.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                             </>
                         }
                         {
                             itensNoCarrinho === 0 &&
                             <>
-                                <p className="carrinho-vazio"><ShoppingCart /><span>{itensNoCarrinho}</span> Carrinho vazio</p>
+                                <p className="carrinho-vazio">
+                                    <IconButton>
+                                        <Badge badgeContent={<span className="itens-carrinho">{itensNoCarrinho}</span>}>
+                                            <ShoppingCart />
+                                        </Badge>
+                                    </IconButton> Carrinho vazio</p>
                             </>
                         }
                     </div>

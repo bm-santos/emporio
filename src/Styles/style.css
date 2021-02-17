@@ -1,13 +1,29 @@
+div {
+  margin: -2px;
+  padding: -2px;
+  border-radius: 8px;
+}
+
+div .fundo-de-tela {
+  opacity: 80%;
+  width: 100%;
+  height: 100vh;
+  background-position: stretch;
+  background-color: black;
+}
+
 html {
   background-image: url("../images/bg-cadastro.jpg");
   background-size: cover;
-  height: 100%;
+  height: 100vh;
   /* You must set a specified height */
   width: 100%;
   background-position: stretch;
   /* Center the image */
   background-repeat: repeat;
   background-attachment: fixed;
+  margin: -2px;
+  padding: -2px;
 }
 
 body {
@@ -19,16 +35,17 @@ body {
 
 div .div-cadastro {
   max-width: 600px;
-  max-height: 100%;
+  max-height: 100vh;
   margin: auto;
-  background-color: white;
-  opacity: 80%;
-  border-radius: 15px;
   margin-top: 20px;
   padding: 20px;
 }
 
-div .div-cadastro img {
+div .div-cadastro .img {
+  background-color: white;
+}
+
+div .div-cadastro .img img {
   border-radius: 15px;
   max-width: 150px;
 }
@@ -49,32 +66,29 @@ div .div-cadastro .form-cadastro {
 div .div-cadastro .form-cadastro h1, div .div-cadastro .form-cadastro h2, div .div-cadastro .form-cadastro h3 {
   font-size: 15;
   max-width: 500;
-  color: #331f04;
+  color: #ffffff;
 }
 
 div .div-cadastro .form-cadastro h3 {
   width: 100%;
-  color: #e40f2f;
+  color: #f0d400;
 }
 
-div .div-cadastro .form-cadastro input {
-  color: #7e550a;
-  background-color: #f7fbba;
-  position: center;
-  margin-top: 2;
-  margin-bottom: 2px;
+div .div-cadastro .form-cadastro .MuiInput-root {
+  color: #ffffff;
+  background-color: #222222;
+  margin-bottom: 5px;
   padding: 15px;
-  width: 80%;
-  border: 5px;
+  width: 100%;
   border-radius: 5px;
 }
 
-div .div-cadastro .form-cadastro button, div .div-cadastro .form-cadastro button:hover, div .div-cadastro .form-cadastro .home .container .item button:hover, div .home .container .item .div-cadastro .form-cadastro button:hover {
+div .div-cadastro .form-cadastro .botao-cadastrar {
   position: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
-  width: 150px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 200px;
   border: none;
   border-radius: 12px;
   background: -webkit-gradient(linear, left top, right top, from(#e6f42d), to(#e8d121));
@@ -82,7 +96,7 @@ div .div-cadastro .form-cadastro button, div .div-cadastro .form-cadastro button
   cursor: pointer;
 }
 
-div .div-cadastro .form-cadastro button:hover, div .div-cadastro .form-cadastro .home .container .item button:hover, div .home .container .item .div-cadastro .form-cadastro button:hover {
+div .div-cadastro .form-cadastro .botao-cadastrar:hover {
   background: -webkit-gradient(linear, left top, right top, from(#eb6931), to(#e9452c));
   background: linear-gradient(90deg, #eb6931 0%, #e9452c 100%);
 }
@@ -127,7 +141,7 @@ div .home .container .item span {
   font-size: 10px;
 }
 
-div .home .container .item button, div .home .container .item button:hover {
+div .home .container .item button, div .home .container .item .div-cadastro .form-cadastro .botao-cadastrar:hover, div .div-cadastro .form-cadastro .home .container .item .botao-cadastrar:hover, div .home .container .item button:hover {
   padding: 10px;
   width: 180px;
   border: none;
@@ -138,7 +152,7 @@ div .home .container .item button, div .home .container .item button:hover {
   cursor: pointer;
 }
 
-div .home .container .item button:hover {
+div .home .container .item .div-cadastro .form-cadastro .botao-cadastrar:hover, div .div-cadastro .form-cadastro .home .container .item .botao-cadastrar:hover, div .home .container .item button:hover {
   background: -webkit-gradient(linear, left top, right top, from(#eb6931), to(#e9452c));
   background: linear-gradient(90deg, #eb6931 0%, #e9452c 100%);
 }
@@ -309,6 +323,13 @@ div .header .container .item-categorias {
   grid-area: "item-categorias";
 }
 
+div .header .container .item-categorias .home-disabled {
+  padding: 15px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 50px solid #ffb700;
+}
+
 div .header .container .item-categorias li {
   display: inline;
   margin: auto;
@@ -330,10 +351,16 @@ div .header .container .item-carrinho {
       justify-self: top;
 }
 
+div .header .container .item-carrinho .itens-carrinho {
+  background-color: red;
+  color: white;
+  padding: 5px;
+}
+
 div .header .container .item-carrinho span {
-  color: #b17f00;
+  color: #000000;
   border-radius: 50%;
-  font-size: 15px;
+  font-size: 10;
 }
 
 div .header .container .item-carrinho p {

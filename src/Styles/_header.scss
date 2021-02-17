@@ -27,15 +27,21 @@ div {
             }
             .item-categorias {
                 grid-area: "item-categorias";
+                .home-disabled {
+                    padding: 15px;
+                    color: #333;
+                    text-decoration: none;
+                    border-bottom: 50px solid #ffb700;
+                    
+                }
                 li {
                     display: inline;
                     margin: auto;
                 }
                 a {
-                    padding: 15px ;
+                    padding: 15px;
                     color: #333;
                     text-decoration: none;
-                    
                 }
                 a:hover {
                     border-bottom: 5px solid #ffb700;
@@ -44,10 +50,15 @@ div {
             }
             .item-carrinho {
                 justify-self: top;
+                .itens-carrinho {
+                    background-color: red;
+                    color: white;
+                    padding: 5px;
+                }
                 span {
-                    color: #b17f00;
+                    color: #000000;
                     border-radius: 50%;
-                    font-size: 15px;
+                    font-size: 10;
                 }
                 p {
                     font-weight: lighter;

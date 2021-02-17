@@ -1,16 +1,19 @@
 div {
     .div-cadastro {
         max-width: 600px;
-        max-height: 100%;
+        max-height: 100vh;
         margin: auto;
-        background-color: rgb(255, 255, 255);
-        opacity: 80%;
-        border-radius: 15px;
+        //background-color: rgb(255, 0, 0);
+        //opacity: 80%;
+        //border-radius: 15px;
         margin-top: 20px;
         padding: 20px;
-        img {
-            border-radius: 15px;
-            max-width: 150px;
+        .img {
+            background-color: white;
+            img {
+                border-radius: 15px;
+                max-width: 150px;
+            }
         }
         .form-cadastro {
             display: flex;
@@ -19,7 +22,7 @@ div {
             h1 {
                 font-size: 15;
                 max-width: 500;
-                color: #331f04;
+                color: #ffffff;
             }
             h2 {
                 @extend h1;
@@ -27,31 +30,28 @@ div {
             h3 {
                 @extend h1;
                 width: 100%;
-                color: #e40f2f;
+                color: #f0d400;
             }
-            input {
-                color: #7e550a;
-                background-color: #f7fbba;
-                position: center;
-                margin-top: 2;
-                margin-bottom: 2px;
+            .MuiInput-root {
+                color: #ffffff;
+                background-color: #222222;
+                margin-bottom: 5px;
                 padding: 15px;
-                width: 80%;
-                border: 5px;
+                width: 100%;
                 border-radius: 5px;
             }
-            button {
+            .botao-cadastrar {
                 position: center;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                padding: 20px;
-                width: 150px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                padding: 10px;
+                width: 200px;
                 border: none;
                 border-radius: 12px;
                 background: linear-gradient(90deg, #e6f42d 0%, #e8d121 100%);
                 cursor: pointer;
             }
-            button:hover {
+            .botao-cadastrar:hover {
                 @extend button;
                 background: linear-gradient(90deg, #eb6931 0%, #e9452c 100%);
             }

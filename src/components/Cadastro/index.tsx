@@ -1,11 +1,11 @@
-import { TextField } from "@material-ui/core";
+import { Button, CircularProgress, IconButton, Input, InputAdornment, InputLabel, LinearProgress, TextField } from "@material-ui/core";
 import axios from "axios";
 import { SIGILL } from "constants";
 import { useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 import Footer from "../Footer";
 import { FaBeer } from 'react-icons/fa';
-import { Cake, Lock, Mail, Person } from "@material-ui/icons";
+import { Delete, Cake, Lock, Mail, Person, Send, AccountCircle, Visibility, VisibilityOff } from "@material-ui/icons";
 
 
 function Cadastro() {
@@ -61,18 +61,20 @@ function Cadastro() {
 
     return (
         <div className="div-cadastro">
-            <img src="https://www.cupomvalido.com.br/wp-content/uploads/emporio-da-cerveja-logo-1.png" alt="Empório da cerveja" />
+            <div className="img">
+                <img src="https://www.cupomvalido.com.br/wp-content/uploads/emporio-da-cerveja-logo-1.png" alt="Empório da cerveja" />
+            </div>
             {(!menorDeIdade && localStorage.getItem("idade") === null) &&
                 <div className="form-cadastro">
-                    <h1>Bem-vindo(a) à loja oficial das maiores cervejarias do mundo.</h1>
+                    <h2>Bem-vindo(a) à loja oficial das maiores cervejarias do mundo.</h2>
                     <div className="campos-cadastro">
-                        <input type="text" ref={inputNome} placeholder="Nome (obrigatório)" />
-                        <input type="email" ref={inputEmail} placeholder="E-mail (obrigatório)" />
-                        <input type="password" ref={inputSenha} placeholder="Senha (obrigatório)" /><br />
-                        <input type="number" min="0" max="100" ref={inputIdade} placeholder="Idade (obrigatório)" />
+                        <Input type="text" inputRef={inputNome} placeholder="Nome" /><br />
+                        <Input type="email" inputRef={inputEmail} placeholder="E-mail" /><br />
+                        <Input type="password" inputRef={inputSenha} placeholder="Senha" /><br />
+                        <Input type="number" inputRef={inputIdade} placeholder="Idade" />
                         {cadastroIncompleto && <h3>Todos os campos são obrigatórios.</h3>}
                         {emailIndisponivel !== '' && <h3>{emailIndisponivel}</h3>}
-                        <button onClick={cadastrar}>Cadastrar</button>
+                        <Button className="botao-cadastrar" endIcon={<Send />} onClick={cadastrar}>Cadastrar</Button>
                     </div>
                 </div>
             }{
@@ -85,7 +87,7 @@ function Cadastro() {
                     Nos comprometemos a não anunciar ou comunicar para esse público.</p>
                 </div>
             }
-            { (localStorage.getItem("token") !== null || logado) && <Redirect to="/" exact />}
+            {(localStorage.getItem("token") !== null || logado) && <Redirect to="/" exact />}
 
         </div >
     )

@@ -1,11 +1,12 @@
-import { Button, CircularProgress, IconButton, Input, InputAdornment, InputLabel, LinearProgress, TextField } from "@material-ui/core";
+import { Button, CircularProgress, createMuiTheme, IconButton, Input, InputAdornment, InputLabel, LinearProgress, TextField, ThemeProvider } from "@material-ui/core";
 import axios from "axios";
 import { SIGILL } from "constants";
 import { useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 import Footer from "../Footer";
 import { FaBeer } from 'react-icons/fa';
-import { Delete, Cake, Lock, Mail, Person, Send, AccountCircle, Visibility, VisibilityOff } from "@material-ui/icons";
+import { Delete, Cake, Lock, Mail, Person, Send, AccountCircle, Visibility, VisibilityOff, Email } from "@material-ui/icons";
+import { yellow, orange } from "@material-ui/core/colors";
 
 
 function Cadastro() {
@@ -19,6 +20,17 @@ function Cadastro() {
     const [menorDeIdade, setMenorDeIdade] = useState<Boolean>(false)
     const [cadastroIncompleto, setCadastroIncompleto] = useState<Boolean>(false)
     const [emailIndisponivel, setEmailIndisponivel] = useState<String>()
+
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: yellow[700]
+            },
+            secondary: {
+                main: orange[900]
+            }
+        }
+    })
 
     const cadastrar = () => {
         console.log(inputNome.current?.value)
@@ -66,12 +78,27 @@ function Cadastro() {
             </div>
             {(!menorDeIdade && localStorage.getItem("idade") === null) &&
                 <div className="form-cadastro">
-                    <h2>Bem-vindo(a) à loja oficial das maiores cervejarias do mundo.</h2>
+                    {/*<h2>Bem-vindo(a) à loja oficial das maiores cervejarias do mundo.</h2>*/}<h2></h2>
                     <div className="campos-cadastro">
-                        <Input type="text" inputRef={inputNome} placeholder="Nome" /><br />
-                        <Input type="email" inputRef={inputEmail} placeholder="E-mail" /><br />
-                        <Input type="password" inputRef={inputSenha} placeholder="Senha" /><br />
-                        <Input type="number" inputRef={inputIdade} placeholder="Idade" />
+                        <ThemeProvider theme={theme}>
+                            <Input color="primary"  startAdornment={
+                                <InputAdornment className="input-icon" position="start">
+                                    <AccountCircle />
+                                </InputAdornment>}
+                                type="text" inputRef={inputNome} placeholder="Nome" /><br />
+                            <Input startAdornment={
+                                <InputAdornment className="input-icon" position="start">
+                                    <Email />
+                                </InputAdornment>} type="email" inputRef={inputEmail} placeholder="E-mail" /><br />
+                            <Input startAdornment={
+                                <InputAdornment className="input-icon" position="start">
+                                    <Lock />
+                                </InputAdornment>} type="password" inputRef={inputSenha} placeholder="Senha" /><br />
+                            <Input startAdornment={
+                                <InputAdornment className="input-icon" position="start">
+                                    <Cake />
+                                </InputAdornment>} type="number" inputRef={inputIdade} placeholder="Idade" />
+                        </ThemeProvider>
                         {cadastroIncompleto && <h3>Todos os campos são obrigatórios.</h3>}
                         {emailIndisponivel !== '' && <h3>{emailIndisponivel}</h3>}
                         <Button className="botao-cadastrar" endIcon={<Send />} onClick={cadastrar}>Cadastrar</Button>

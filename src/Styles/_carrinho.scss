@@ -1,16 +1,15 @@
 div {
-    overflow: hidden;
     .carrinho {
+        border-width: 2px;
         margin: auto;
-        width: 50%;
+        width: 400px;
         padding: 15px 15px;
         .container {
             padding: 5px 10px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             flex-wrap: wrap;
-            border-radius: 12px;
-            opacity: 80%;
+            opacity: 100%;
             background-color: white;
             .carrinho-header-meu-carrinho {
                 font-weight: bolder;
@@ -18,51 +17,69 @@ div {
             }
             .carrinho-header-finalizar {
                 justify-self: right;
-                align-self: center;
+                align-items: center;
                 cursor: pointer;
+                color: green;
                 :hover {
-                    color: green;
+                    color: rgb(0, 123, 255);
                 }
             }
             .carrinho-left-side {
                 font-weight: bold;
                 font-size: 24px;
-                color: rgb(184, 74, 0);
+                color: rgb(84, 84, 84);
                 img {
                     height: 200px;
                 }
             }
             .carrinho-right-side {
-                padding: 0px 20px;
-                .trash {
-                    color: darkred;
-                    padding: 20px 20px;
-                    cursor: pointer;
+                .trash-div {
+                    width: 100%;
+                    .trash {
+                        background: linear-gradient(90deg, #f42d2d 0%, #e82121 100%);
+                        cursor: pointer;
+                        span {
+                            color: rgb(0, 0, 0);
+                            cursor: pointer;
+                            font-size: 10px;
+                        }
+                    }
                     :hover {
-                        color: red;
+                        background: linear-gradient(90deg, #f56262 0%, #ee4949 100%);
                     }
                 }
                 .carrinho-itens {
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
-                    grid-template-rows: 1fr 2fr;
-                    justify-items: bottom !important;
-                    align-items: center !important;
-                    padding: 0px 20px;
-
+                    grid-template-rows: 1fr 1fr 1fr;
+                    padding: 0px;
+                    margin: 0px;
+                    border-radius: 0px;
+                    align-items: center;
+                    .carrinho-qtd {
+                        background-color: rgb(255, 255, 255);
+                        width: 100%;
+                        padding: 0px;
+                        margin: 0px;
+                        border-radius: 0px;
+                    }
                     .carrinho-btn-decrementa {
                         background-color: orange;
+                        width: 100%;
+                        padding: 0px;
+                        margin: 0px;
+                        border-radius: 0px;
                     }
                     .carrinho-btn-decrementa:hover {
                         background-color: rgb(255, 111, 0);
                         cursor: pointer;
                     }
-                    .carrinho-qtd {
-                        background-color: rgb(255, 255, 255);
-                        justify-self: stretch;
-                    }
                     .carrinho-btn-incrementa {
                         background-color: orange;
+                        width: 100%;
+                        padding: 0px;
+                        margin: 0px;
+                        border-radius: 0px;
                     }
                     .carrinho-btn-incrementa:hover {
                         background-color: rgb(255, 111, 0);
@@ -74,16 +91,14 @@ div {
         .pedido-finalizado {
             background-color: #fff;
             opacity: 50%;
-            padding: 20px;
+            margin: 50px 10px;
             border-radius: 12px;
+            justify-items: center;
+            align-items: center;
             p {
-                width: 100%;
-                margin: auto;
-                align-self: center;
-                justify-self: right;
                 font-size: 30px;
                 font-weight: bold;
-                color: rgb(228, 129, 0);
+                color: rgb(0, 0, 0);
             }
         }
     }

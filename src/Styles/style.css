@@ -28,7 +28,7 @@ html {
 
 body {
   margin: 10;
-  font-family: "apple-system", "BlinkMacSystemFont", "avenir next", "avenir", "helvetica neue", "helvetica", "ubuntu", "roboto", "noto", "segoe ui", "arial", sans-serif;
+  font-family: "Helvetica Neue",sans-serif;
   text-align: center;
   color: #4d4d4d;
 }
@@ -63,23 +63,31 @@ div .div-cadastro .form-cadastro {
           flex-direction: column;
 }
 
+div .div-cadastro .form-cadastro .input-icon {
+  color: gray;
+  height: auto;
+  padding: auto;
+  max-width: 150;
+}
+
 div .div-cadastro .form-cadastro h1, div .div-cadastro .form-cadastro h2, div .div-cadastro .form-cadastro h3 {
   font-size: 15;
-  max-width: 500;
   color: #ffffff;
+  font-weight: 100;
+  letter-spacing: 2px;
 }
 
 div .div-cadastro .form-cadastro h3 {
   width: 100%;
-  color: #f0d400;
+  color: #f0d400 !important;
 }
 
 div .div-cadastro .form-cadastro .MuiInput-root {
-  color: #ffffff;
+  color: #acacac;
   background-color: #222222;
   margin-bottom: 5px;
   padding: 15px;
-  width: 100%;
+  max-width: 150;
   border-radius: 5px;
 }
 
@@ -88,7 +96,7 @@ div .div-cadastro .form-cadastro .botao-cadastrar {
   margin-top: 15px;
   margin-bottom: 15px;
   padding: 10px;
-  width: 200px;
+  max-width: 150;
   border: none;
   border-radius: 12px;
   background: -webkit-gradient(linear, left top, right top, from(#e6f42d), to(#e8d121));
@@ -97,13 +105,18 @@ div .div-cadastro .form-cadastro .botao-cadastrar {
 }
 
 div .div-cadastro .form-cadastro .botao-cadastrar:hover {
-  background: -webkit-gradient(linear, left top, right top, from(#eb6931), to(#e9452c));
-  background: linear-gradient(90deg, #eb6931 0%, #e9452c 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#eb6931), to(#e9c32c));
+  background: linear-gradient(90deg, #eb6931 0%, #e9c32c 100%);
+}
+
+div .div-cadastro .nao-autorizado {
+  color: black;
+  background-color: #fff;
+  margin-top: 10px;
 }
 
 div .home {
   margin: auto;
-  overflow: hidden;
 }
 
 div .home .container {
@@ -112,18 +125,17 @@ div .home .container {
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
   border-radius: 5px;
-  opacity: 80%;
+  opacity: 100%;
+  overflow: auto;
 }
 
 div .home .container .item {
   background-color: white;
   border-radius: 12px;
   color: #161616;
-  -ms-grid-column-align: stretch;
-      justify-self: stretch;
   margin: 5px;
   padding: 5px;
 }
@@ -135,6 +147,7 @@ div .home .container .item img {
 div .home .container .item p {
   font-size: 15px;
   margin: 10px;
+  font-weight: bold;
 }
 
 div .home .container .item span {
@@ -153,17 +166,14 @@ div .home .container .item button, div .home .container .item .div-cadastro .for
 }
 
 div .home .container .item .div-cadastro .form-cadastro .botao-cadastrar:hover, div .div-cadastro .form-cadastro .home .container .item .botao-cadastrar:hover, div .home .container .item button:hover {
-  background: -webkit-gradient(linear, left top, right top, from(#eb6931), to(#e9452c));
-  background: linear-gradient(90deg, #eb6931 0%, #e9452c 100%);
-}
-
-div {
-  overflow: hidden;
+  background: -webkit-gradient(linear, left top, right top, from(#eb6931), to(#e9c32c));
+  background: linear-gradient(90deg, #eb6931 0%, #e9c32c 100%);
 }
 
 div .carrinho {
+  border-width: 2px;
   margin: auto;
-  width: 50%;
+  width: 400px;
   padding: 15px 15px;
 }
 
@@ -175,8 +185,7 @@ div .carrinho .container {
       grid-template-columns: 1fr 1fr;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  border-radius: 12px;
-  opacity: 80%;
+  opacity: 100%;
   background-color: white;
 }
 
@@ -188,38 +197,46 @@ div .carrinho .container .carrinho-header-meu-carrinho {
 div .carrinho .container .carrinho-header-finalizar {
   -ms-grid-column-align: right;
       justify-self: right;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
+  color: green;
 }
 
 div .carrinho .container .carrinho-header-finalizar :hover {
-  color: green;
+  color: #007bff;
 }
 
 div .carrinho .container .carrinho-left-side {
   font-weight: bold;
   font-size: 24px;
-  color: #b84a00;
+  color: #545454;
 }
 
 div .carrinho .container .carrinho-left-side img {
   height: 200px;
 }
 
-div .carrinho .container .carrinho-right-side {
-  padding: 0px 20px;
+div .carrinho .container .carrinho-right-side .trash-div {
+  width: 100%;
 }
 
-div .carrinho .container .carrinho-right-side .trash {
-  color: darkred;
-  padding: 20px 20px;
+div .carrinho .container .carrinho-right-side .trash-div .trash {
+  background: -webkit-gradient(linear, left top, right top, from(#f42d2d), to(#e82121));
+  background: linear-gradient(90deg, #f42d2d 0%, #e82121 100%);
   cursor: pointer;
 }
 
-div .carrinho .container .carrinho-right-side .trash :hover {
-  color: red;
+div .carrinho .container .carrinho-right-side .trash-div .trash span {
+  color: black;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+div .carrinho .container .carrinho-right-side .trash-div :hover {
+  background: -webkit-gradient(linear, left top, right top, from(#f56262), to(#ee4949));
+  background: linear-gradient(90deg, #f56262 0%, #ee4949 100%);
 }
 
 div .carrinho .container .carrinho-right-side .carrinho-itens {
@@ -227,17 +244,30 @@ div .carrinho .container .carrinho-right-side .carrinho-itens {
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 2fr;
-      grid-template-rows: 1fr 2fr;
-  justify-items: bottom !important;
-  -webkit-box-align: center !important;
-      -ms-flex-align: center !important;
-          align-items: center !important;
-  padding: 0px 20px;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-qtd {
+  background-color: white;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
 }
 
 div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-btn-decrementa {
   background-color: orange;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
 }
 
 div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-btn-decrementa:hover {
@@ -245,14 +275,12 @@ div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-btn-decr
   cursor: pointer;
 }
 
-div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-qtd {
-  background-color: white;
-  -ms-grid-column-align: stretch;
-      justify-self: stretch;
-}
-
 div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-btn-incrementa {
   background-color: orange;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
 }
 
 div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-btn-incrementa:hover {
@@ -263,32 +291,31 @@ div .carrinho .container .carrinho-right-side .carrinho-itens .carrinho-btn-incr
 div .carrinho .pedido-finalizado {
   background-color: #fff;
   opacity: 50%;
-  padding: 20px;
+  margin: 50px 10px;
   border-radius: 12px;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 div .carrinho .pedido-finalizado p {
-  width: 100%;
-  margin: auto;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  -ms-grid-column-align: right;
-      justify-self: right;
   font-size: 30px;
   font-weight: bold;
-  color: #e48100;
+  color: black;
+}
+
+div {
+  overflow: hidden;
 }
 
 div .header {
   position: -webkit-sticky !important;
   position: sticky !important;
-  top: 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   margin: auto;
-  overflow: hidden;
 }
 
 div .header .container {
@@ -299,7 +326,6 @@ div .header .container {
   margin: auto;
   padding: 5px 10px;
   background-color: white;
-  border-radius: 15px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -327,7 +353,7 @@ div .header .container .item-categorias .home-disabled {
   padding: 15px;
   color: #333;
   text-decoration: none;
-  border-bottom: 50px solid #ffb700;
+  border-bottom: 5px solid #ffb700;
 }
 
 div .header .container .item-categorias li {

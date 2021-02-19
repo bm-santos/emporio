@@ -3,9 +3,6 @@ div {
         max-width: 600px;
         max-height: 100vh;
         margin: auto;
-        //background-color: rgb(255, 0, 0);
-        //opacity: 80%;
-        //border-radius: 15px;
         margin-top: 20px;
         padding: 20px;
         .img {
@@ -19,25 +16,35 @@ div {
             display: flex;
             align-items: center;
             flex-direction: column;
+
+            .input-icon {
+                color: gray ;
+                //background-color: white;
+                height: auto;
+                padding: auto;
+                max-width: 150;
+            }
             h1 {
                 font-size: 15;
-                max-width: 500;
                 color: #ffffff;
+                font-weight: 100;
+                letter-spacing: 2px;
             }
             h2 {
                 @extend h1;
+
             }
             h3 {
                 @extend h1;
                 width: 100%;
-                color: #f0d400;
+                color: #f0d400 !important;
             }
             .MuiInput-root {
-                color: #ffffff;
+                color: #acacac;
                 background-color: #222222;
                 margin-bottom: 5px;
                 padding: 15px;
-                width: 100%;
+                max-width: 150;
                 border-radius: 5px;
             }
             .botao-cadastrar {
@@ -45,7 +52,7 @@ div {
                 margin-top: 15px;
                 margin-bottom: 15px;
                 padding: 10px;
-                width: 200px;
+                max-width: 150;
                 border: none;
                 border-radius: 12px;
                 background: linear-gradient(90deg, #e6f42d 0%, #e8d121 100%);
@@ -53,8 +60,13 @@ div {
             }
             .botao-cadastrar:hover {
                 @extend button;
-                background: linear-gradient(90deg, #eb6931 0%, #e9452c 100%);
+                background: linear-gradient(90deg, #eb6931 0%, #e9c32c 100%);
             }
+        }
+        .nao-autorizado {
+            color: black;
+            background-color: #fff;
+            margin-top: 10px;
         }
     }
 }

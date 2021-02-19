@@ -1,10 +1,9 @@
 div {
+    overflow: hidden;
     .header {
         position: sticky !important;
-        top: 0;
         align-items: center;
         margin: auto;
-        overflow: hidden;
 
         .container {
             display: grid;
@@ -13,7 +12,6 @@ div {
             margin: auto;
             padding: 5px 10px;
             background-color: rgb(255, 255, 255);
-            border-radius: 15px;
             align-items: center;
             justify-items: stretch;
             flex-wrap: inherit;
@@ -31,7 +29,7 @@ div {
                     padding: 15px;
                     color: #333;
                     text-decoration: none;
-                    border-bottom: 50px solid #ffb700;
+                    border-bottom: 5px solid #ffb700;
                     
                 }
                 li {

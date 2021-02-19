@@ -5,8 +5,9 @@ import { adicionaNoCarrinho, decrementaItem, finalizaPedido, removeDoCarrinho } 
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Footer from "../Footer";
-import { Add, ArrowForward, PlusOne } from "@material-ui/icons";
-import { FaMinus, FaMinusCircle, FaPlusCircle, FaTrash, FaUserMinus } from "react-icons/fa";
+import { Add, ArrowForward, LocalBar, PlusOne } from "@material-ui/icons";
+import { FaBeer, FaMinus, FaMinusCircle, FaPlusCircle, FaTrash, FaUserMinus } from "react-icons/fa";
+import { Button, ButtonGroup } from "@material-ui/core";
 
 function Carrinho() {
     const { arrayItens, itensNoCarrinho } = useSelector((state: any) => state.reducerItem)
@@ -60,19 +61,20 @@ function Carrinho() {
                             <p>{arrayItens[0]?.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                         </div>
                         <div className="carrinho-right-side">
-                            <div className="trash">
-                                <span onClick={() => saiDoCarrinho(arrayItens[0]?.id)}><FaTrash /></span>
+                            <div className="trash-div" >
+                                <span><Button className="trash" startIcon={<FaTrash />}
+                                    onClick={() => saiDoCarrinho(arrayItens[0]?.id)}>Limpar carrinho</Button></span>
                             </div>
                             <p><strong>{arrayItens[0]?.title}</strong></p>
                             <div className="carrinho-itens">
                                 <div className="carrinho-btn-decrementa" onClick={() => funcaoDecrementaItem(arrayItens[0])}>
-                                    <span  ><FaMinus fontSize="inherit" /></span>
+                                    <span  ><Button ><span  ><FaMinus fontSize="inherit" /></span></Button></span>
                                 </div>
                                 <div className="carrinho-qtd">
                                     {itensNoCarrinho}
                                 </div>
                                 <div className="carrinho-btn-incrementa" onClick={() => acrescentaItem(arrayItens[0])}>
-                                    <span  ><Add fontSize="inherit" /></span>
+                                    <span  ><Button ><span  ><Add fontSize="inherit" /></span></Button></span>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +83,7 @@ function Carrinho() {
                 {
                     pedidoFinalizado &&
                     <div className="pedido-finalizado">
-                        <p>Seu pedido foi realizado com sucesso.</p>
+                        <p>Seu pedido foi realizado com sucesso.<br/><FaBeer /></p>
                     </div>
                 }
             </div>

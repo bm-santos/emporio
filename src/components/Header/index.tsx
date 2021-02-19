@@ -1,12 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
-import { ItensState } from "../../store/ducks/carrinho/types";
-import Carrinho from "../Carrinho";
 import "../../Styles/style.css"
 import { ShoppingCart } from "@material-ui/icons";
-import { Badge, IconButton, MenuItem } from "@material-ui/core";
+import { Badge, IconButton } from "@material-ui/core";
 
 function Header() {
     const [categorias, setCategorias] = useState<any>([])
@@ -49,7 +46,7 @@ function Header() {
                                         <Badge badgeContent={<span className="itens-carrinho">{itensNoCarrinho}</span>} >
                                             <ShoppingCart />
                                         </Badge>
-                                    </IconButton></strong> / {somaCompra.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                                    </IconButton> {somaCompra.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p>
                             </>
                         }
                         {

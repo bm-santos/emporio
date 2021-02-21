@@ -1,12 +1,12 @@
 import { Button, CircularProgress, createMuiTheme, IconButton, Input, InputAdornment, InputLabel, LinearProgress, TextField, ThemeProvider } from "@material-ui/core";
 import axios from "axios";
-import { SIGILL } from "constants";
 import { useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 import Footer from "../Footer";
 import { FaBeer } from 'react-icons/fa';
 import { Delete, Cake, Lock, Mail, Person, Send, AccountCircle, Visibility, VisibilityOff, Email } from "@material-ui/icons";
 import { yellow, orange } from "@material-ui/core/colors";
+import Header from "../Header";
 
 
 function Cadastro() {
@@ -21,6 +21,7 @@ function Cadastro() {
     const [cadastroIncompleto, setCadastroIncompleto] = useState<Boolean>(false)
     const [emailIndisponivel, setEmailIndisponivel] = useState<String>()
 
+    
     const theme = createMuiTheme({
         palette: {
             primary: {

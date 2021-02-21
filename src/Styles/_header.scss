@@ -1,45 +1,61 @@
 div {
-    overflow: hidden;
-    .header {
+    .div-header {
+        justify-content: space-between;
+        height: 80px;
         position: sticky !important;
-        align-items: center;
-        margin: auto;
-
-        .container {
-            display: grid;
-            grid-template-columns: 10% 70% 20%;
-
-            margin: auto;
-            padding: 5px 10px;
-            background-color: rgb(255, 255, 255);
+        color: white;
+        @media (max-width: 690px) {
+            padding-left: 0;
+        }
+        height: "50px";
+        .MuiAppBar-colorPrimary {
+            background-color: white;
+            color: black;
+        }
+        .MuiMenuItem-root {
+            display: inline;
+            padding: 8px;
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            background-color: darkgray;
+        }
+        .item-categorias-drawer {
+            a {
+                display: inline;
+                padding: 8px;
+                color: #333;
+                text-decoration: none;
+                padding: 10px;
+                background-color: darkgray;
+            }
+            a:hover {
+                border-bottom: 5px solid #ffb700;
+                background-color: gray;
+            }
+        }
+        .container-header {
+            display: flex;
             align-items: center;
-            justify-items: stretch;
-            flex-wrap: inherit;
+            justify-content: space-between;
+
+            background-color: white;
             .item-logo {
-                grid-area: "item-logo";
-                justify-self: center;
+                display: inline-block;
+                vertical-align: middle;
                 img {
                     border-radius: 15px;
-                    width: 120px;
+                    width: 100px;
+                    padding-left: 0px;
                 }
             }
             .item-categorias {
-                grid-area: "item-categorias";
-                .home-disabled {
-                    padding: 15px;
-                    color: #333;
-                    text-decoration: none;
-                    border-bottom: 5px solid #ffb700;
-                    
-                }
-                li {
-                    display: inline;
-                    margin: auto;
-                }
                 a {
-                    padding: 15px;
+                    display: inline;
+                    padding: 8px;
                     color: #333;
                     text-decoration: none;
+                    padding: 10px;
                 }
                 a:hover {
                     border-bottom: 5px solid #ffb700;
@@ -47,7 +63,8 @@ div {
                 }
             }
             .item-carrinho {
-                justify-self: top;
+                justify-self: right;
+                align-self: right;
                 .itens-carrinho {
                     background-color: red;
                     color: white;
@@ -58,8 +75,9 @@ div {
                     border-radius: 50%;
                     font-size: 10;
                 }
-                p {
+                i {
                     font-weight: lighter;
+                    font-size: 10px;
                 }
             }
         }

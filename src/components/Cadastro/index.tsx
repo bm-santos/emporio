@@ -1,12 +1,12 @@
-import { Button, CircularProgress, createMuiTheme, IconButton, Input, InputAdornment, InputLabel, LinearProgress, TextField, ThemeProvider } from "@material-ui/core";
+import { Button, createMuiTheme, Input, InputAdornment, ThemeProvider } from "@material-ui/core";
 import axios from "axios";
 import { useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
-import Footer from "../Footer";
-import { FaBeer } from 'react-icons/fa';
-import { Delete, Cake, Lock, Mail, Person, Send, AccountCircle, Visibility, VisibilityOff, Email } from "@material-ui/icons";
+import { Cake, Lock, Send, AccountCircle, Email } from "@material-ui/icons";
 import { yellow, orange } from "@material-ui/core/colors";
-import Header from "../Header";
+import { useDispatch } from "react-redux";
+import { buscaCategorias } from "../../store/ducks/categorias/action";
+import { buscaBebidas } from "../../store/ducks/bebidas/action";
 
 
 function Cadastro() {
@@ -21,7 +21,8 @@ function Cadastro() {
     const [cadastroIncompleto, setCadastroIncompleto] = useState<Boolean>(false)
     const [emailIndisponivel, setEmailIndisponivel] = useState<String>()
 
-    
+    const dispatch = useDispatch()
+
     const theme = createMuiTheme({
         palette: {
             primary: {
@@ -61,7 +62,7 @@ function Cadastro() {
                 axios.post("http://localhost:4000/register", requisicao)
                     .then(resposta => {
                         localStorage.setItem("token", resposta.data.accessToken)
-                        setLogado(true)
+                        getCategorias()
                     })
                     .catch(function (error) {
                         if (error?.response.status === 400) {
@@ -70,6 +71,40 @@ function Cadastro() {
                     })
             }
         }
+    }
+
+    const getCategorias = () => {
+        const headers = {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        }
+        return (
+            axios.get('http://localhost:4000/categories', { headers: headers })
+                .then(resposta => {
+                    dispatch(buscaCategorias(resposta.data))
+                    getBebidas()
+                })
+        )
+    }
+
+    const getBebidas = () => {
+        const headers = {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+        }
+        setLogado(true)
+        return (
+            axios.get("http://localhost:4000/beers", { headers: headers })
+                .then(resposta => {
+                    dispatch(buscaBebidas(resposta.data))
+                })
+
+                .catch(function (error) {
+                    if (error.response.status === 401) {
+                        localStorage.clear()
+                    }
+                })
+
+            
+        )
     }
 
     return (
@@ -82,7 +117,7 @@ function Cadastro() {
                     {/*<h2>Bem-vindo(a) à loja oficial das maiores cervejarias do mundo.</h2>*/}<h2></h2>
                     <div className="campos-cadastro">
                         <ThemeProvider theme={theme}>
-                            <Input color="primary"  startAdornment={
+                            <Input color="primary" startAdornment={
                                 <InputAdornment className="input-icon" position="start">
                                     <AccountCircle />
                                 </InputAdornment>}
@@ -115,7 +150,7 @@ function Cadastro() {
                     Nos comprometemos a não anunciar ou comunicar para esse público.</p>
                 </div>
             }
-            {(localStorage.getItem("token") !== null || logado) && <Redirect to="/" exact />}
+            {(localStorage.getItem("token") !== null && logado) && <Redirect to="/" exact />}
 
         </div >
     )

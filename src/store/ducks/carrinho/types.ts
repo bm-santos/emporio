@@ -7,16 +7,18 @@ export enum ItensTypes {
     LIMPA_COOKIES = 'LIMPA_COOKIES'
 }
 
-export interface Item {
+export interface CarrinhoItem {
     id: number,
     description: string,
     image: string,
     price: number,
-    title: string
+    title: string,
+    qtd: number
 }
 
 export interface ItensState {
-    arrayItens: Item[],
+    arrayItens: CarrinhoItem[],
+    arrayCategorias: any[],
     itensNoCarrinho: Number | any,
     somaCompra: Number | any,
     compraFinalizada: Boolean

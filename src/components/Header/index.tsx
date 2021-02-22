@@ -1,38 +1,26 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../Styles/style.css"
 import { ShoppingCart } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
-import { AppBar, Toolbar, Typography, Badge, IconButton, makeStyles, Button, Drawer, MenuItem, List } from "@material-ui/core";
-import { FaItalic } from "react-icons/fa";
+import { AppBar, Toolbar, Badge, IconButton, makeStyles, Drawer, MenuItem, List } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
+import { atualizaQtdCarrinho, atualizaValorTotal } from "../../store/ducks/bebidas/action";
 
 function Header() {
 
-    const { itensNoCarrinho, somaCompra, compraFinalizada } = useSelector((state: any) => state.reducerItem)
-    const [categorias, setCategorias] = useState<any>([])
+    const {  compraFinalizada } = useSelector((state: any) => state.carrinho)
+    const { categorias } = useSelector((state: any) => state.categorias)
+    const [carrinhoClicado, setCarrinhoClicado] = useState<Boolean>(false)
     const myToken = localStorage.getItem("token")
+    const { itensNoCarrinho, somaCompra, bebidas } = useSelector((state: any) => state.bebidas)
+    const dispatch = useDispatch()
 
-    const useStyles = makeStyles(() => ({
-        header: {
-            alignItems: "right"
-        },
-        menuButton: {
-            fontFamily: "Open Sans, sans-serif",
-            fontWeight: 700,
-            size: "18px",
-            marginLeft: "38px",
-            color: "green",
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        drawerContainer: {
-            padding: "10px 30px"
-        }
-    }));
 
-    const { header, menuButton, drawerContainer } = useStyles();
+    const clicouCarrinho = () => {
+        setCarrinhoClicado(true)
+    }
+
 
     const [state, setState] = useState({
         mobileView: false,
@@ -40,12 +28,9 @@ function Header() {
     })
     const { mobileView, drawerOpen } = state;
 
+
     useEffect(() => {
-        const headers = {
-            'Authorization': `Bearer ${myToken}`
-        }
-        axios.get('http://localhost:4000/categories', { headers: headers })
-            .then(resposta => setCategorias(resposta.data))
+        
 
         const setResponsiveness = () => {
             return window.innerWidth < 690
@@ -55,7 +40,9 @@ function Header() {
         };
         setResponsiveness();
         window.addEventListener("resize", () => setResponsiveness());
-    }, [myToken])
+    }, [bebidas])
+
+
 
     const displayDesktop = () => {
         return (
@@ -69,6 +56,7 @@ function Header() {
             </div>
         );
     };
+
     const getMenuButtons = () => {
         return categorias.map((catName: any) => {
             return (
@@ -86,7 +74,7 @@ function Header() {
             <div>
                 {itensNoCarrinho !== 0 &&
                     <>
-                        <p><strong>
+                        <p onClick={clicouCarrinho}><strong>
                             <IconButton >
                                 <Badge badgeContent={<span className="itens-carrinho">{itensNoCarrinho}</span>} >
                                     <ShoppingCart />
@@ -94,15 +82,15 @@ function Header() {
                             </IconButton> {somaCompra.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p>
                     </>
                 }
-                {
-                    itensNoCarrinho === 0 &&
+                {itensNoCarrinho === 0 &&
                     <>
-                        <p className="carrinho-vazio">
+                        <p className="carrinho-vazio" onClick={clicouCarrinho}>
                             <IconButton >
                                 <Badge badgeContent={<span className="itens-carrinho">{itensNoCarrinho}</span>}>
                                     <ShoppingCart />
                                 </Badge>
-                            </IconButton></p>
+                                </IconButton>
+                        </p>
                     </>
                 }
             </div>
@@ -136,7 +124,7 @@ function Header() {
                         <div className="item-categorias-drawer">{getDrawerChoices()}</div>
                     </Drawer>
 
-                    <div className="item-logo">{emporioLogo}</div>
+                    <div className="item-logo" ><a href={"/"}>{emporioLogo}</a></div>
                     <div className="item-carrinho" >{getCartItems()}</div>
 
                 </Toolbar >
@@ -163,7 +151,8 @@ function Header() {
 
 
     const emporioLogo = (
-        <img src="https://www.cupomvalido.com.br/wp-content/uploads/emporio-da-cerveja-logo-1.png" alt="Empório da cerveja" />
+        <img src={process.env.PUBLIC_URL + 'logo.png'}
+            alt="Empório da cerveja" />
     );
     return (
         <div className="div-header">
@@ -171,6 +160,9 @@ function Header() {
                 <AppBar >
                     {mobileView ? displayMobile() : displayDesktop()}
                 </AppBar>}
+            {
+                carrinhoClicado && <Redirect to={"/carrinho"} exact />
+            }
         </div>
     )
 }

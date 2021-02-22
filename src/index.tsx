@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom';
 import './Styles/style.css';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
-import { store } from './store/ducks/carrinho';
+import { store } from './store';
 import { Provider } from 'react-redux'
 
 

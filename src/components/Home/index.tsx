@@ -1,40 +1,42 @@
 import { ShoppingCart } from "@material-ui/icons";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { atualizaQtdCarrinho, atualizaValorTotal } from "../../store/ducks/bebidas/action";
 import { adicionaNoCarrinho } from "../../store/ducks/carrinho/action";
-import { ItensState } from "../../store/ducks/carrinho/types";
 import Header from "../Header";
 
 function Home() {
 
     const myToken = localStorage.getItem("token")
-    const [bebidas, setBebidas] = useState<any>([])
+
     const [carrinhoVazio, setCarrinhoVazio] = useState<Boolean>(true)
     const dispatch = useDispatch()
 
-    const { arrayItem } = useSelector((state: any) => state.reducerItem)
+    const { arrayItens } = useSelector((state: any) => state.carrinho)
+    const { bebidas } = useSelector((state: any) => state.bebidas)
 
-    useEffect(() => {
-        const headers = {
-            'Authorization': `Bearer ${myToken}`
+    function adicionaAoCarrinho(item: any) {
+        let somaTotal = 0
+        let itensCarrinho = 0
+
+        dispatch(adicionaNoCarrinho(item))
+
+        for (let i = 0; i < bebidas.length; i++) {
+            if ((bebidas[i].qtd === undefined) || (bebidas[i].qtd === null)) {
+                itensCarrinho += 0
+            } else {
+                itensCarrinho += bebidas[i].qtd
+                somaTotal += (bebidas[i].qtd * bebidas[i].price)
+            }
         }
-        axios.get("http://localhost:4000/beers", { headers: headers })
-            .then(resposta => setBebidas(resposta.data))
-            .catch(function (error) {
-                if (error.response.status === 401) {
-                    localStorage.clear()
-                }
-            })
-    }, [myToken])
 
-    function vaiParaCarrinho(item: any) {
-        setCarrinhoVazio(false)
         return (
-            dispatch(adicionaNoCarrinho(item))
+            dispatch(atualizaQtdCarrinho(itensCarrinho)),
+            dispatch(atualizaValorTotal(somaTotal))
         )
     }
+
     return (
         <>
             {myToken === null && <Redirect to={'/cadastro'} />}
@@ -47,7 +49,7 @@ function Home() {
                             <p>{item.description}</p>
                             <span>{item.title}</span>
                             <p>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                            <button onClick={() => vaiParaCarrinho(item)}><ShoppingCart fontSize="inherit"/> Adicionar ao carrinho</button>
+                            <button onClick={() => adicionaAoCarrinho(item)}><ShoppingCart fontSize="inherit" /> Adicionar ao carrinho</button>
                         </div>
 
                     ))

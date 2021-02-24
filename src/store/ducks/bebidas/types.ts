@@ -1,22 +1,23 @@
 export enum BebidasTypes {
     GET_BEBIDAS = 'GET_BEBIDAS',
-    ATUALIZA_QTD = 'ATUALIZA_QTD',
-    ATUALIZA_SUM = 'ATUALIZA_SUM',
+    GET_QUANTIDADE = 'GET_QUANTIDADE',
+    INCREMENTA = 'INCREMENTA',
     DECREMENTA = 'DECREMENTA',
-    DELETA_DO_CARRINHO = 'DELETA_DO_CARRINHO'
+    REMOVE = 'REMOVE',
+    FINALIZA = 'FINALIZA'
 }
 
 export interface BebidasState {
     bebidas: BebidaItem[],
-    itensNoCarrinho: Number,
-    somaCompra: Number
+    qtdCarrinho: number,
+    compraFinalizada: boolean
 }
 
 export interface BebidaItem {
-    id: Number,
-    title: String,
-    price: Number,
-    description: String,
-    image: String,
-    qtd: Number
+    id: number,
+    title: string,
+    price: string,
+    description: string,
+    image: string,
+    qtd: number
 }

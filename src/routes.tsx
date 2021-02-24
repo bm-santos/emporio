@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
-import Cadastro from "./components/Cadastro";
-import Carrinho from "./components/Carrinho";
-import Home from "./components/Home";
+import Cadastro from "./pages/Cadastro";
+import Carrinho from "./pages/Carrinho";
+import Home from "./pages/Home";
 
 function Routes(){
     return(

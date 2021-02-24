@@ -3,5 +3,5 @@ export enum CategoriasTypes {
 }
 
 export interface CategoriasState {
-    categorias: String[]
+    categorias: string[]
 }

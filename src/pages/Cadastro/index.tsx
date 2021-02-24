@@ -1,6 +1,6 @@
 import { Button, createMuiTheme, Input, InputAdornment, ThemeProvider } from "@material-ui/core";
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Cake, Lock, Send, AccountCircle, Email } from "@material-ui/icons";
 import { yellow, orange } from "@material-ui/core/colors";
@@ -12,7 +12,7 @@ import { buscaBebidas } from "../../store/ducks/bebidas/action";
 function Cadastro() {
 
     const inputNome = useRef<HTMLInputElement>(null)
-    const inputEmail = useRef<any>()
+    const inputEmail = useRef<HTMLInputElement>()
     const inputSenha = useRef<HTMLInputElement>(null)
     const inputIdade = useRef<any>()
 
@@ -33,6 +33,10 @@ function Cadastro() {
             }
         }
     })
+
+    useEffect(() => {
+        localStorage.clear()
+    }, [])
 
     const cadastrar = () => {
         console.log(inputNome.current?.value)
@@ -103,7 +107,7 @@ function Cadastro() {
                     }
                 })
 
-            
+
         )
     }
 
@@ -114,7 +118,7 @@ function Cadastro() {
             </div>
             {(!menorDeIdade && localStorage.getItem("idade") === null) &&
                 <div className="form-cadastro">
-                    {/*<h2>Bem-vindo(a) à loja oficial das maiores cervejarias do mundo.</h2>*/}<h2></h2>
+                    <br />
                     <div className="campos-cadastro">
                         <ThemeProvider theme={theme}>
                             <Input color="primary" startAdornment={

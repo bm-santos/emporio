@@ -1,13 +1,14 @@
 import { action } from "typesafe-actions";
-import { BebidasState, BebidasTypes } from "./types";
+import { BebidaItem, BebidasState, BebidasTypes } from "./types";
 
-export const buscaBebidas = (payload: BebidasState) =>
-    action(BebidasTypes.GET_BEBIDAS, payload)
-export const atualizaQtdCarrinho = (payload: any) =>
-    action(BebidasTypes.ATUALIZA_QTD, payload)
-export const atualizaValorTotal = (payload: any) =>
-    action(BebidasTypes.ATUALIZA_SUM, payload)
-export const decrementaItem = (payload: any) =>
-    action(BebidasTypes.DECREMENTA, payload)
-export const removeDoCarrinho = (payload: any) => 
-    action(BebidasTypes.DELETA_DO_CARRINHO, payload)
+export const buscaBebidas = (payload: BebidasState) => action(BebidasTypes.GET_BEBIDAS, payload)
+
+export const atualizaQuantidade = (payload: BebidaItem) => action(BebidasTypes.GET_QUANTIDADE, payload)
+
+export const incrementaItem = (payload: BebidaItem) => action(BebidasTypes.INCREMENTA, payload)
+
+export const decrementaItem = (payload: BebidaItem) => action(BebidasTypes.DECREMENTA, payload)
+
+export const removeItem = (payload: BebidaItem) => action(BebidasTypes.REMOVE, payload)
+
+export const finalizaCompra = () => action(BebidasTypes.FINALIZA)

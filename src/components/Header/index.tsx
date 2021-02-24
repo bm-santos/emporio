@@ -1,26 +1,22 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "../../Styles/style.css"
 import { ShoppingCart } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
-import { AppBar, Toolbar, Badge, IconButton, makeStyles, Drawer, MenuItem, List } from "@material-ui/core";
+import { AppBar, Toolbar, Badge, IconButton, Drawer, MenuItem, List } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
-import { atualizaQtdCarrinho, atualizaValorTotal } from "../../store/ducks/bebidas/action";
+import { CategoriasState } from "../../store/ducks/categorias/types";
+import { BebidasState } from "../../store/ducks/bebidas/types";
 
 function Header() {
 
-    const {  compraFinalizada } = useSelector((state: any) => state.carrinho)
-    const { categorias } = useSelector((state: any) => state.categorias)
+    const { categorias } = useSelector((state: CategoriasState) => state)
+    const { qtdCarrinho, compraFinalizada } = useSelector((state: BebidasState) => state)
     const [carrinhoClicado, setCarrinhoClicado] = useState<Boolean>(false)
-    const myToken = localStorage.getItem("token")
-    const { itensNoCarrinho, somaCompra, bebidas } = useSelector((state: any) => state.bebidas)
-    const dispatch = useDispatch()
-
 
     const clicouCarrinho = () => {
         setCarrinhoClicado(true)
     }
-
 
     const [state, setState] = useState({
         mobileView: false,
@@ -28,21 +24,15 @@ function Header() {
     })
     const { mobileView, drawerOpen } = state;
 
-
     useEffect(() => {
-        
-
         const setResponsiveness = () => {
             return window.innerWidth < 690
                 ? setState((prevState) => ({ ...prevState, mobileView: true }))
                 : setState((prevState) => ({ ...prevState, mobileView: false }));
-
         };
         setResponsiveness();
         window.addEventListener("resize", () => setResponsiveness());
-    }, [bebidas])
-
-
+    }, [])
 
     const displayDesktop = () => {
         return (
@@ -72,27 +62,13 @@ function Header() {
     const getCartItems = () => {
         return (
             <div>
-                {itensNoCarrinho !== 0 &&
-                    <>
-                        <p onClick={clicouCarrinho}><strong>
-                            <IconButton >
-                                <Badge badgeContent={<span className="itens-carrinho">{itensNoCarrinho}</span>} >
-                                    <ShoppingCart />
-                                </Badge>
-                            </IconButton> {somaCompra.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p>
-                    </>
-                }
-                {itensNoCarrinho === 0 &&
-                    <>
-                        <p className="carrinho-vazio" onClick={clicouCarrinho}>
-                            <IconButton >
-                                <Badge badgeContent={<span className="itens-carrinho">{itensNoCarrinho}</span>}>
-                                    <ShoppingCart />
-                                </Badge>
-                                </IconButton>
-                        </p>
-                    </>
-                }
+                <p className="carrinho-vazio" onClick={clicouCarrinho}>
+                    <IconButton >
+                        <Badge badgeContent={<span className="itens-carrinho">{qtdCarrinho}</span>}>
+                            <ShoppingCart />
+                        </Badge>
+                    </IconButton>
+                </p>
             </div>
         )
     }
@@ -124,17 +100,17 @@ function Header() {
                         <div className="item-categorias-drawer">{getDrawerChoices()}</div>
                     </Drawer>
 
-                    <div className="item-logo" ><a href={"/"}>{emporioLogo}</a></div>
+                    <div className="item-logo" >{emporioLogo}</div>
                     <div className="item-carrinho" >{getCartItems()}</div>
 
                 </Toolbar >
             </div>
-
         )
     }
+
     const getDrawerChoices = () => {
         return categorias.map((category: any) => {
-            return (
+            return ( 
                 <List
                     {...{
                         style: { textDecoration: "none" },
@@ -149,23 +125,21 @@ function Header() {
         })
     }
 
-
     const emporioLogo = (
         <img src={process.env.PUBLIC_URL + 'logo.png'}
-            alt="Empório da cerveja" />
+            alt="Empório da cerveja" onClick={() => (<Redirect to={"/"} exact />)} />
     );
+
     return (
         <div className="div-header">
             {!compraFinalizada &&
                 <AppBar >
                     {mobileView ? displayMobile() : displayDesktop()}
-                </AppBar>}
-            {
-                carrinhoClicado && <Redirect to={"/carrinho"} exact />
+                </AppBar>
             }
+            {carrinhoClicado && <Redirect to={"/carrinho"} exact />}
         </div>
     )
 }
 
 export default Header;
-

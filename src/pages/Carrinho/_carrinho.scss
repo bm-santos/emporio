@@ -4,10 +4,10 @@ div {
         margin: auto;
         width: 400px;
         padding: 15px 15px;
-        .container {
+        .container-out {
             padding: 5px 10px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 3fr 1fr;
             flex-wrap: wrap;
             opacity: 100%;
             background-color: white;
@@ -16,21 +16,40 @@ div {
                 font-size: 24px;
             }
             .carrinho-header-finalizar {
-                justify-self: right;
+                justify-self: left;
                 align-items: center;
                 cursor: pointer;
                 color: green;
+                font-size: 12px;
                 :hover {
                     color: rgb(0, 123, 255);
                 }
             }
+            .carrinho-header-voltar {
+                justify-self: right;
+                align-items: center;
+                cursor: pointer;
+                color: green;
+                font-size: 12px;
+                :hover {
+                    color: rgb(0, 123, 255);
+                }
+            }
+        }
+        .container-items {
+            padding: 5px 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            flex-wrap: wrap;
+            opacity: 100%;
+            background-color: white;
             .carrinho-left-side {
                 font-weight: bold;
                 font-size: 24px;
                 color: rgb(84, 84, 84);
                 padding: 12px;
                 img {
-                    height: 150px;
+                    height: 180px;
                 }
             }
             .carrinho-right-side {
@@ -54,7 +73,7 @@ div {
                     grid-template-columns: 1fr 1fr 1fr;
                     grid-template-rows: 1fr 1fr 1fr;
                     padding: 0px;
-                    margin: 20px ;
+                    margin: 20px;
                     border-radius: 0px;
                     align-items: center;
                     .carrinho-qtd {
